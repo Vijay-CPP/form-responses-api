@@ -21,7 +21,7 @@ const submitForm = async (req, res) => {
 };
 
 const getResponses = async (req, res) => {
-  if (!req.query.API_KEY || req.query.API_KEY != process.env.API_KEY){
+  if (!req.query.API_KEY || req.query.API_KEY !== process.env.API_KEY){
     return res.status(401).json({ message: "Unauthorized!!" });
   }
 
