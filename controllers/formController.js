@@ -20,13 +20,17 @@ const submitForm = async (req, res) => {
   }
 };
 
-// const getResponses = async (req, res) => {
-//   try {
-//     let responses = await formResponse.find();
-//     return res.status(200).json({ responses });
-//   } catch (error) {
-//     return res.status(500).json({ message: "Internal server error!!" });
-//   }
-// } 
+const getResponses = async (req, res) => {
+  if (!req.query.API_KEY || req.query.API_KEY != process.env.API_KEY){
+    return res.status(401).json({ message: "Unauthorized!!" });
+  }
 
-module.exports = { submitForm };
+  try {
+    let responses = await formResponse.find();
+    return res.status(200).json({ responses });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error!!" });
+  }
+}
+
+module.exports = { submitForm, getResponses };
