@@ -26,8 +26,8 @@ const getResponses = async (req, res) => {
   }
 
   try {
-    let responses = await formResponse.find();
-    return res.status(200).json({ responses });
+    let data = await formResponse.find().sort({"createdAt" : "desc"});
+    return res.status(200).json({ responses: data});
   } catch (error) {
     return res.status(500).json({ message: "Internal server error!!" });
   }
