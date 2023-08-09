@@ -1,6 +1,10 @@
 // models/FormResponse.js
 const mongoose = require('mongoose');
 
+function getDate(){
+    return new Date()
+}
+
 const formResponseSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -16,7 +20,7 @@ const formResponseSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Date,
-        default: Date.now,
+        default: getDate,
     },
 });
 

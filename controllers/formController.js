@@ -21,13 +21,20 @@ const submitForm = async (req, res) => {
 };
 
 const getResponses = async (req, res) => {
-  if (!req.query.API_KEY || req.query.API_KEY !== process.env.API_KEY){
+  if (!req.query.API_KEY || req.query.API_KEY !== process.env.API_KEY) {
     return res.status(401).json({ message: "Unauthorized!!" });
   }
 
   try {
-    let data = await formResponse.find().sort({"createdAt" : "desc"});
-    return res.status(200).json({ responses: data});
+    let projection = {
+      _id: 0,
+      name: 1,
+      email: 1,
+      message: 1,
+      createdAt: 1,
+    }
+    let data = await formResponse.find({}, projection).sort({ "createdAt": "desc" });
+    return res.status(200).json({ responses: data });
   } catch (error) {
     return res.status(500).json({ message: "Internal server error!!" });
   }
