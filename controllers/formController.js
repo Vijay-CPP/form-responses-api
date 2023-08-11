@@ -3,6 +3,19 @@
 // Importing the template for the document
 const formResponse = require('../models/formResponse');
 const logData = require('../models/logModel');
+const dateFormatOptions = {
+  timeZone: 'Asia/Kolkata', // Set the timezone to Indian Standard Time (IST)
+  weekday: 'short',        // Abbreviated weekday name (e.g., Fri)
+  day: '2-digit',          // Day of the month with leading zeros (e.g., 11)
+  month: 'short',          // Abbreviated month name (e.g., Aug)
+  year: 'numeric',         // Four-digit year (e.g., 2023)
+  hour: '2-digit',         // Hour with leading zeros (e.g., 15)
+  minute: '2-digit',       // Minute with leading zeros (e.g., 17)
+  second: '2-digit',       // Second with leading zeros (e.g., 46)
+  hour12: true,
+  timeZoneName: 'short',   // Abbreviated timezone name (e.g., IST)
+  fractionalSecondDigits: 3 // milisc with 3 digits
+};
 
 const submitForm = async (req, res) => {
   try {
@@ -39,7 +52,7 @@ const getResponses = async (req, res) => {
     data = data.map((item) => {
       return {
         ...item,
-        createdAt: item.createdAt.toUTCString()
+        createdAt: item.createdAt.toLocaleString('en-IN', dateFormatOptions)
       };
     })
 
@@ -86,7 +99,7 @@ const getLogs = async (req, res) => {
     let logs = data.map((item) => {
       return {
         ...item,
-        timestamp: item.timestamp.toUTCString()
+        timestamp: item.timestamp.toLocaleString('en-IN', dateFormatOptions)
       };
     })
 
