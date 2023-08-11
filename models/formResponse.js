@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 function getDate(){
-    return new Date()
+    return new Date();
 }
 
 const formResponseSchema = new mongoose.Schema({
