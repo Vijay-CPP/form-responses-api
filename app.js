@@ -6,9 +6,12 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const formRoutes = require('./routes/formRoutes');
 
+app.set('trust proxy', true);
+
 // middlewares
 app.use(express.json())
 app.use(cors())
+
 
 // database connection
 const dbURI = process.env.MONGO_URI;
