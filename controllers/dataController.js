@@ -53,7 +53,7 @@ const getData = async (req, res) => {
         }
 
         // Lean to remove additional properties of mongoose which arises while cloning
-        let data = await logData.find({}, projection).sort({ "timestamp": "desc" }).lean();
+        let data = await dataModel.find({}, projection).sort({ "timestamp": "desc" }).lean();
 
         // Formatting the date
         let logs = data.map((item) => {

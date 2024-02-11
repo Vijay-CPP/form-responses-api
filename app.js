@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require("cors");
 const formRoutes = require('./routes/formRoutes');
+const dataRoutes = require('./routes/dataRoutes');
 
 app.set('trust proxy', true);
 
@@ -33,3 +34,4 @@ app.listen(PORT, () => {
 
 // Routing
 app.use('/', formRoutes);
+app.use('/', dataRoutes);
